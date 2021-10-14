@@ -8,13 +8,13 @@ import com.wang.springframework.BeanFactory;
  * @date 2021/10/14 16:47
  */
 public class SpringframeworkTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         BeanFactory beanFactory = new BeanFactory();
-        BeanDefinition beanDefinition = new BeanDefinition(new User());
+        BeanDefinition beanDefinition = new BeanDefinition(User.class);
         beanFactory.registerBeanDefinition("user", beanDefinition);
 
-        User user = (User)beanFactory.getBean("user");
+        Class<User> userClass= (Class<User>) beanFactory.getBean("user");
+        User user = userClass.newInstance();
         user.say();
-
     }
 }

@@ -7,11 +7,11 @@ package com.wang.springframework;
  */
 public class BeanDefinition {
 
-    private Object bean;
+    private Class bean;
 
     public BeanDefinition(){}
 
-    public BeanDefinition(Object object){
+    public BeanDefinition(Class object){
         this.bean = object;
     }
 
@@ -19,7 +19,7 @@ public class BeanDefinition {
         return bean;
     }
 
-    public void setBean(Object bean){
+    public void setBean(Class bean){
         this.bean = bean;
     }
 }
