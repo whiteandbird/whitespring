@@ -1,6 +1,10 @@
 package com.wang.springframework.beans.factory.support;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.wang.springframework.beans.BeanReference;
 import com.wang.springframework.beans.BeansException;
+import com.wang.springframework.beans.PropertyValue;
+import com.wang.springframework.beans.PropertyValues;
 import com.wang.springframework.beans.factory.config.BeanDefinition;
 
 import java.lang.reflect.Constructor;
@@ -17,10 +21,33 @@ public abstract class AbstractAutowireCapableBeanfactory extends AbstractBeanFac
     @Override
     protected Object createBean(String beanName, BeanDefinition definition, Object[] args) {
 
-        Object o = createBeanInstance(beanName, definition,  args);
+        Object res = null;
+        try{
+            res = createBeanInstance(beanName, definition,  args);
 
-        addSingleton(beanName, o);
-        return o;
+            // 填充属性
+            applyPropertyValues(beanName, res, definition);
+
+            addSingleton(beanName, res);
+        }catch (Exception e){
+            throw new BeansException(e.getMessage());
+        }
+        return res;
+    }
+
+    protected void applyPropertyValues(String beanName, Object bean, BeanDefinition definition) {
+        PropertyValues propertyValues = definition.getPropertyValues();
+        PropertyValue[] propertieVaules = propertyValues.getPropertieVaules();
+        for(PropertyValue property : propertieVaules){
+            String propertyName = property.getName();
+            Object value = property.getValue();
+
+            if(value instanceof BeanReference){
+                // BeanReference类型去bean容器里面再拿·
+                value = getBean(((BeanReference)value).getValue());
+            }
+            BeanUtil.setFieldValue(bean, propertyName, value);
+        }
     }
 
     protected Object createBeanInstance(String beanName, BeanDefinition definition, Object[] args)throws  RuntimeException{
