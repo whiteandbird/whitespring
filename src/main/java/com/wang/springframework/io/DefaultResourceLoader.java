@@ -21,7 +21,6 @@ public class DefaultResourceLoader implements ResourceLoader{
         try{
             return new UrlPathResource(new URL(location));
         }catch (MalformedURLException e){
-            e.printStackTrace();
             return new FilePathResource(location);
         }
 
