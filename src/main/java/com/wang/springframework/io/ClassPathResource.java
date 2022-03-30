@@ -21,7 +21,7 @@ public class ClassPathResource implements Resource {
 
     public ClassPathResource(String path, ClassLoader classLoader){
         this.classPath = path;
-        this.classLoader = classLoader;
+        this.classLoader = classLoader == null? ClassLoaderUtil.getClassLoader() : classLoader;
     }
 
     @Override

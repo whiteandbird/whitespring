@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="arm" class="com.wang.test.entity.Arm">
+        <property name="num" value="4"></property>
+    </bean>
+    <bean id="person" class="com.wang.test.entity.Person">
+        <property name="personName" value="wangdachui"/>
+        <property name="arm" ref="arm"/>
+    </bean>
+</beans>

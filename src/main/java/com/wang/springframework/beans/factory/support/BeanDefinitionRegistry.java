@@ -5,4 +5,7 @@ import com.wang.springframework.beans.factory.config.BeanDefinition;
 
 public interface BeanDefinitionRegistry {
     void registryBeanDefinition(String beanName , BeanDefinition definition);
+
+//    BeanDefinition getBeanDefinition(String beanName);
+    boolean containsBeanDefinition(String beanName);
 }

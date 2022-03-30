@@ -30,6 +30,7 @@ public abstract class AbstractAutowireCapableBeanfactory extends AbstractBeanFac
 
             addSingleton(beanName, res);
         }catch (Exception e){
+            e.printStackTrace();
             throw new BeansException(e.getMessage());
         }
         return res;
