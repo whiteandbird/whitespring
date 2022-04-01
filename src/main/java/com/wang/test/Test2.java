@@ -1,12 +1,11 @@
 package com.wang.test;
 
-import com.wang.springframework.beans.BeanReference;
+import com.wang.springframework.beans.config.BeanReference;
 import com.wang.springframework.beans.PropertyValue;
 import com.wang.springframework.beans.PropertyValues;
 import com.wang.springframework.beans.factory.config.BeanDefinition;
 import com.wang.springframework.beans.factory.support.DefaultListableBeanfactory;
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.File;
 

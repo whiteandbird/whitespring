@@ -1,7 +1,7 @@
 package com.wang.springframework.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.wang.springframework.beans.BeanReference;
+import com.wang.springframework.beans.config.BeanReference;
 import com.wang.springframework.beans.BeansException;
 import com.wang.springframework.beans.PropertyValue;
 import com.wang.springframework.beans.PropertyValues;

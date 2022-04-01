@@ -3,7 +3,7 @@ package com.wang.springframework.beans.factory.support;
 import cn.hutool.core.bean.BeanException;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
-import com.wang.springframework.beans.BeanReference;
+import com.wang.springframework.beans.config.BeanReference;
 import com.wang.springframework.beans.PropertyValue;
 import com.wang.springframework.beans.PropertyValues;
 import com.wang.springframework.beans.factory.config.BeanDefinition;

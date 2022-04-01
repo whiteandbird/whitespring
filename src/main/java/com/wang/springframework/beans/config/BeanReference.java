@@ -1,4 +1,4 @@
-package com.wang.springframework.beans;
+package com.wang.springframework.beans.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

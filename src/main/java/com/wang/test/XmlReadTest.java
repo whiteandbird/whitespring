@@ -1,15 +1,12 @@
 package com.wang.test;
 
 import cn.hutool.core.util.XmlUtil;
-import com.wang.springframework.beans.BeanReference;
+import com.wang.springframework.beans.config.BeanReference;
 import com.wang.springframework.beans.PropertyValue;
 import com.wang.springframework.beans.PropertyValues;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import java.util.List;
 
 /**
  * @author wangdy
