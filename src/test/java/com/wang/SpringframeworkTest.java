@@ -9,6 +9,7 @@ import com.wang.springframework.BeanFactory;
  */
 public class SpringframeworkTest {
     public static void main(String[] args) {
-
+        String path = SpringframeworkTest.class.getResource("/").getPath();
+        System.out.println(path);
     }
 }
