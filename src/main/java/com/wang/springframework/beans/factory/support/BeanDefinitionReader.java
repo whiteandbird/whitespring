@@ -1,5 +1,6 @@
 package com.wang.springframework.beans.factory.support;
 
+import com.wang.springframework.beans.BeansException;
 import com.wang.springframework.io.Resource;
 import com.wang.springframework.io.ResourceLoader;
 
@@ -25,6 +26,8 @@ public interface BeanDefinitionReader {
      * @param locations
      */
     void loadBeanDefinitions(String locations);
+
+    void loadBeanDefinitions(String[] locations) throws BeansException;
 
     /**
      * 加载beanDefinition

@@ -1,5 +1,7 @@
 package com.wang.springframework.beans.factory.config;
 
+import com.wang.springframework.context.support.DestroyableBean;
+
 /**
  * @Author: whiteandbird
  * @Descripter:
@@ -15,4 +17,6 @@ public interface SingletonBeanRegistry {
     Object getSingleton(String beanName);
 
     void addSingleton(String beanName,Object bean);
+
+    void addDestroyBean(String beanName, DestroyableBean destroyableBean);
 }

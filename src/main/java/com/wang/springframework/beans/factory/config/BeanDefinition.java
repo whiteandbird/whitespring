@@ -13,17 +13,40 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BeanDefinition {
 
-   private Class beanClass;
 
-   private PropertyValues propertyValues;
+    public static String SCOPE_SINGLETON = "singleton";
 
-   public BeanDefinition(Class beanClass, PropertyValues propertyValues){
-       this.beanClass = beanClass;
-       this.propertyValues = propertyValues == null ? new PropertyValues() : propertyValues;
-   }
+    public static String SCOPE_PROTOTYPE = "prototype";
 
-   public BeanDefinition(Class beanClass){
-       this(beanClass, null);
-   }
+
+    private Class beanClass;
+
+    private PropertyValues propertyValues;
+
+    private boolean singleton = true;
+
+    private boolean prototype = false;
+
+    private String scope;
+
+    private String initMethodName;
+
+    private String destroyMethodName;
+
+    public void setScope(String scope) {
+        this.scope = scope;
+        this.singleton = SCOPE_SINGLETON.equals(scope);
+        this.prototype = SCOPE_PROTOTYPE.equals(scope);
+    }
+
+
+    public BeanDefinition(Class beanClass, PropertyValues propertyValues) {
+        this.beanClass = beanClass;
+        this.propertyValues = propertyValues == null ? new PropertyValues() : propertyValues;
+    }
+
+    public BeanDefinition(Class beanClass) {
+        this(beanClass, null);
+    }
 
 }

@@ -68,6 +68,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader{
             Element bean = (Element)beanList.item(x);
             String beanName = bean.getAttribute("id");
             String classPath = bean.getAttribute("class");
+            String scope = bean.getAttribute("scope");
             // 属性
             PropertyValues propertyValue = new PropertyValues();
             // 获取属性
@@ -86,8 +87,15 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader{
                 throw new BeanException("该bean已经注册");
             }
             // 反射出class
+            String initMethodName = bean.getAttribute("init-method");
+            String destroyMethodName = bean.getAttribute("destroy-method");
             Class<?> aClass = Class.forName(classPath);
             BeanDefinition definition = new BeanDefinition(aClass, propertyValue);
+            definition.setInitMethodName(StrUtil.isEmpty(initMethodName)?null : initMethodName);
+            definition.setDestroyMethodName(StrUtil.isEmpty(destroyMethodName)?null : destroyMethodName);
+            if(StrUtil.isNotEmpty(scope)){
+                definition.setScope(scope);
+            }
             beanDefinitionRegistry.registryBeanDefinition(beanName, definition);
 
         }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="userService" class="com.wang.test.dao.UserService">
+        <property name="iUserDao" ref="iUserDao"></property>
+    </bean>
+
+    <bean id="iUserDao" class="com.wang.test.MyFactoryBean"/>
+</beans>

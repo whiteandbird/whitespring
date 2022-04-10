@@ -1,5 +1,7 @@
 package com.wang.springframework.beans.config;
 
+import com.wang.springframework.BeanFactory;
+
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +10,7 @@ import java.util.Map;
  * @author wangdy
  * @date 2022/3/31 20:31
  */
-public interface ListableBeanFactory {
+public interface ListableBeanFactory extends BeanFactory {
 
     /**
      *

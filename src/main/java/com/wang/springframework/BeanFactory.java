@@ -16,6 +16,10 @@ public interface BeanFactory {
 
    Object getBean(String beanName, Object ...args);
 
+   <T> T getBean(String beanName,Class<T> type);
+
+   <T> T getBean(Class<T> requiredType);
+
 //   void registerBeanDefinition(String beanName, BeanDefinition definition);
 
 }

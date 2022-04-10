@@ -1,5 +1,6 @@
 package com.wang.springframework.beans.factory.support;
 
+import com.wang.springframework.beans.BeansException;
 import com.wang.springframework.io.DefaultResourceLoader;
 import com.wang.springframework.io.ResourceLoader;
 
@@ -20,6 +21,13 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
     public AbstractBeanDefinitionReader(BeanDefinitionRegistry registry, ResourceLoader resourceLoader){
         this.beanDefinitionRegistry = registry;
         this.resourceLoader = resourceLoader;
+    }
+
+    @Override
+    public void loadBeanDefinitions(String[] locations) throws BeansException {
+        for(String location : locations){
+            loadBeanDefinitions(location);
+        }
     }
 
     @Override

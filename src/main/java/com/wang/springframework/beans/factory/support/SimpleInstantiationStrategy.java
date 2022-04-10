@@ -20,7 +20,8 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy{
             }
             return beanClass.newInstance();
         }catch (Exception e){
-            throw new BeansException("创建失败");
+            e.printStackTrace();
+            throw new BeansException(beanName+"创建失败");
         }
     }
 }

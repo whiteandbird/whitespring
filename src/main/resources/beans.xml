@@ -3,8 +3,13 @@
     <bean id="arm" class="com.wang.test.entity.Arm">
         <property name="num" value="4"></property>
     </bean>
-    <bean id="person" class="com.wang.test.entity.Person">
+    <bean id="person" class="com.wang.test.entity.Person" init-method="init" scope="singleton">
         <property name="personName" value="wangdachui"/>
         <property name="arm" ref="arm"/>
     </bean>
+
+    <bean id="myProcessor" class="com.wang.test.MyPostProcessor"/>
+    <bean id="myProcessor2" class="com.wang.test.MyProcessor2"/>
+
+    <bean id="factoryPostProcessor" class="com.wang.test.MyBeanFactoryPostProcessor"/>
 </beans>
