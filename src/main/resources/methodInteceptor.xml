@@ -5,13 +5,13 @@
     </bean>
 
     <bean id="iUserDao" class="com.wang.test.MyFactoryBean"/>
-    <bean id="beforeAdvice" class="com.wang.test.proxy.UserServiceBeforeAdvice"/>
+
     <bean id="aopcreator" class="com.wang.springframework.aop.DefaultAdvisorAutoProxyCreator"/>
 
+    <bean id="beforeAdvice" class="com.wang.test.proxy.UserServiceBeforeAdvice"/>
     <bean id="methodbefore" class="com.wang.springframework.aop.MethodBeforeAdviceInterceptor">
         <property name="methodBeforeAdvice" ref="beforeAdvice"/>
     </bean>
-
     <bean id="pointCutAdvisor" class="com.wang.springframework.aop.AspectJExpressPointCutAdvisor">
         <property name="express" value="execution(* com.wang.test.dao.IUserService.*(..))"/>
         <property name="advice" ref="methodbefore"/>
