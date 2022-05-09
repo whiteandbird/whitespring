@@ -7,10 +7,12 @@ import com.wang.springframework.beans.config.BeanReference;
 import com.wang.springframework.beans.PropertyValue;
 import com.wang.springframework.beans.PropertyValues;
 import com.wang.springframework.beans.factory.config.BeanDefinition;
+import com.wang.springframework.context.support.ClassPathBeanDefintionScanner;
 import com.wang.springframework.io.Resource;
 import com.wang.springframework.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.IOException;
@@ -63,7 +65,18 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader{
         BeanDefinitionRegistry beanDefinitionRegistry = getBeanDefinitionRegistry();
         Document document = XmlUtil.readXML(inputStream);
         Element root = document.getDocumentElement();
+
         NodeList beanList = root.getElementsByTagName("bean");
+        NodeList scans = root.getElementsByTagName("component-scan");
+        if(scans.getLength()>0){
+            Element item = (Element)scans.item(0);
+            String scanPath = item.getAttribute("base-package");
+            if(StrUtil.isEmpty(scanPath))
+                throw new BeanException("scan path is nll");
+            scanPackage(scanPath);
+        }
+
+
         for(int x=0;x<beanList.getLength();x++){
             Element bean = (Element)beanList.item(x);
             String beanName = bean.getAttribute("id");
@@ -99,5 +112,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader{
             beanDefinitionRegistry.registryBeanDefinition(beanName, definition);
 
         }
+    }
+
+    private void scanPackage(String scanPath){
+        String[] basePackages = StrUtil.splitToArray(scanPath, ',');
+        ClassPathBeanDefintionScanner classPathBeanDefintionScanner = new ClassPathBeanDefintionScanner(getBeanDefinitionRegistry());
+        classPathBeanDefintionScanner.doScan(basePackages);
     }
 }

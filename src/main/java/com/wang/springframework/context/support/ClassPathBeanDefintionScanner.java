@@ -1,5 +1,7 @@
 package com.wang.springframework.context.support;
 
+import cn.hutool.core.util.StrUtil;
+import com.wang.springframework.annotation.Component;
 import com.wang.springframework.annotation.Scope;
 import com.wang.springframework.beans.factory.config.BeanDefinition;
 import com.wang.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -23,7 +25,11 @@ public class ClassPathBeanDefintionScanner extends ClassPathScanningCandidateCom
         for(String basePackage : basePackages){
             Set<BeanDefinition> candidateComponents = findCandidateComponents(basePackage);
             for(BeanDefinition beanDefinition : candidateComponents){
-                resolveBeanScope(beanDefinition);
+                String scope = resolveBeanScope(beanDefinition);
+                if(StrUtil.isNotEmpty(scope)) {
+                    beanDefinition.setScope(scope);
+                }
+                registry.registryBeanDefinition(determineBeanName(beanDefinition), beanDefinition);
             }
         }
     }
@@ -36,5 +42,15 @@ public class ClassPathBeanDefintionScanner extends ClassPathScanningCandidateCom
         }
         return "singleton";
 
+    }
+
+    private String determineBeanName(BeanDefinition beanDefinition){
+        Class<?> beanClass = beanDefinition.getBeanClass();
+        Component component = beanClass.getAnnotation(Component.class);
+        String value = component.value();
+        if(StrUtil.isEmpty(value)){
+            return StrUtil.lowerFirst(beanClass.getSimpleName());
+        }
+        return value;
     }
 }
