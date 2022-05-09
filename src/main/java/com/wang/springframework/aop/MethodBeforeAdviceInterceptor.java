@@ -20,7 +20,9 @@ public class MethodBeforeAdviceInterceptor implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
+        // 这个也要求是往bean容器里面注入的
         this.methodBeforeAdvice.before(methodInvocation.getMethod(), methodInvocation.getArguments(), methodInvocation.getThis());
+        // 调用reflectiveMethodInvocation来触发
         return methodInvocation.proceed();
     }
 }
