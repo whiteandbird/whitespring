@@ -97,7 +97,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader{
                 propertyValue.addPropertieValue(new PropertyValue(propertyName, value));
             }
             if(beanDefinitionRegistry.containsBeanDefinition(beanName)){
-                throw new BeanException("该bean已经注册");
+                throw new BeanException(beanName+"该bean已经注册");
             }
             // 反射出class
             String initMethodName = bean.getAttribute("init-method");

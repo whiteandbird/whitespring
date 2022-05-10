@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="userService" class="com.wang.test.proxytest.ProxyTestService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+    <bean id="userDao" class="com.wang.test.proxytest.FactoryUserDao"/>
+
+    <bean id="proxyCreator" class="com.wang.springframework.aop.MyPointCutAdvisorProxyCreator"/>
+
+
+    <bean id="advice" class="com.wang.test.proxytest.UserDaoMethodInterceptor"></bean>
+
+    <bean id="methodInterceptor" class="com.wang.springframework.aop.MethodBeforeAdviceInterceptor">
+        <property name="methodBeforeAdvice" ref="advice"></property>
+    </bean>
+
+    <bean id="advisor" class="com.wang.springframework.aop.AspectJExpressPointCutAdvisor">
+        <property name="advice" ref="methodInterceptor"></property>
+        <property name="express" value="execution(* com.wang.test.proxytest.UserDao.*(..))"></property>
+    </bean>
+</beans>
