@@ -19,6 +19,7 @@ public class AspectJExpressPointCut implements PointCut,ClassFilter,MethodMatche
 
     static {
         SUPPORTED_PRIMITIVES.add(PointcutPrimitive.EXECUTION);
+        SUPPORTED_PRIMITIVES.add(PointcutPrimitive.AT_ANNOTATION);
     }
 
     private final PointcutExpression pointcutExpression;
