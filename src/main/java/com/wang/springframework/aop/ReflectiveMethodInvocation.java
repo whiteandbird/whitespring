@@ -1,6 +1,5 @@
 package com.wang.springframework.aop;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.aopalliance.intercept.MethodInvocation;
 
