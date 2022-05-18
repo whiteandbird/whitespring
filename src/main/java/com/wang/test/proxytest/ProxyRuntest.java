@@ -5,6 +5,10 @@ import com.wang.test.dao.IUserService;
 import com.wang.test.dao.UserService;
 import com.wang.test.event.CustomEvent;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @Author: whiteandbird
  * @Descripter:
@@ -15,5 +19,7 @@ public class ProxyRuntest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:proxytest.xml");
         ProxyTestService bean = context.getBean(ProxyTestService.class);
         bean.serviceQuery();
+        context.close();
+
     }
 }

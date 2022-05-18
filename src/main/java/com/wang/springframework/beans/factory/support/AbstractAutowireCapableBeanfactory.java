@@ -35,7 +35,9 @@ public abstract class AbstractAutowireCapableBeanfactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition definition, Object[] args) {
 
         Object bean = resovleBeforeInstantiation(beanName, definition);
+
         if(null != bean){
+//            System.out.println("beanName: "+beanName + "  "+ bean.getClass());
             return bean;
         }
 

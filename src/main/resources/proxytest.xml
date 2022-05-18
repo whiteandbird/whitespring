@@ -3,7 +3,7 @@
     <bean id="userService" class="com.wang.test.proxytest.ProxyTestService">
         <property name="userDao" ref="userDao"></property>
     </bean>
-    <bean id="userDao" class="com.wang.test.proxytest.FactoryUserDao"/>
+    <bean id="userDao" class="com.wang.test.proxytest.UserDao"/>
 
     <bean id="proxyCreator" class="com.wang.springframework.aop.MyPointCutAdvisorProxyCreator"/>
 
@@ -16,6 +16,6 @@
 
     <bean id="advisor" class="com.wang.springframework.aop.AspectJExpressPointCutAdvisor">
         <property name="advice" ref="methodInterceptor"></property>
-        <property name="express" value="execution(* com.wang.test.proxytest.UserDao.*(..))"></property>
+        <property name="express" value="execution(* com.wang.test.proxytest.IProxyUserDao.*(..))"></property>
     </bean>
 </beans>

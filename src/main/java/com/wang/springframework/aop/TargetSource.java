@@ -14,7 +14,8 @@ public class TargetSource {
     private Object target;
 
     public  Class<?>[] getTargetClass(){
-        return target.getClass().getInterfaces();
+        Class<?>[] interfaces = target.getClass().getInterfaces();
+        return interfaces;
     }
 
     public Object getTarget() {

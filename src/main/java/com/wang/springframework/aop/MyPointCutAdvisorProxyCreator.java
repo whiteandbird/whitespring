@@ -31,7 +31,7 @@ public class MyPointCutAdvisorProxyCreator implements InstantiationAwareBeanPost
                 System.out.println(beanClass.getSimpleName());
                 support.setTargetSource(new TargetSource(beanClass.getDeclaredConstructor().newInstance()));
                 support.setInterceptor((MethodInterceptor) advisor.getAdvice());
-                support.setProxyTargetClass(false);
+                support.setProxyTargetClass(true);
                 support.setMethodMatcher(advisor.getPointCut().getMethodMatcher());
             }catch (Exception e){
                 e.printStackTrace();

@@ -6,7 +6,7 @@ package com.wang.test.proxytest;
  * @Date: 2022:05:10  22:51
  */
 public class ProxyTestService {
-    private UserDao userDao;
+    private IProxyUserDao userDao;
 
 
     public void serviceQuery(){

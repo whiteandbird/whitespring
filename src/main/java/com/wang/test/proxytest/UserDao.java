@@ -10,4 +10,9 @@ public class UserDao implements IProxyUserDao{
         System.out.println("dao query");
         return "hello world";
     }
+
+    public String query2(String name){
+        System.out.println("query  the args is: "+name);
+        return name;
+    }
 }
